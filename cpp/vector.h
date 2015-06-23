@@ -2,7 +2,7 @@
 * File Name: vector.h
 * Purpose:
 * Creation Date: 20-06-2015
-* Last Modified: Sun Jun 21 22:37:18 2015
+* Last Modified: Mon Jun 22 17:59:44 2015
 * Created By: Chris Richardson
 *******************************************/
 
@@ -36,6 +36,6 @@ void vector3_init(Vector3 *vector);
 void vector3_free(Vector3 *vector);
 double vector3_dot(Vector3 *vecA, Vector3 *vecB);
 double vector3_magnitude(Vector3 *vector);
-Vector3 *vector3_cross(Vector3 *vecA, Vector3 *vecB);
+void vector3_cross(Vector3 *vecA, Vector3 *vecB, Vector3 *vecC);
 
 #endif

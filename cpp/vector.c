@@ -2,7 +2,7 @@
 * File Name: vector.c
 * Purpose:
 * Creation Date: 20-06-2015
-* Last Modified: Sun Jun 21 22:39:05 2015
+* Last Modified: Mon Jun 22 18:00:17 2015
 * Created By: Chris Richardson
 *******************************************/
 
@@ -65,38 +65,35 @@ void vector_free(Vector *vector) {
  * Functions for Vector3 struct type
  *
  */
-void vector3_init(Vector3 *vector) {
-  vector->data = calloc(3, sizeof(double));
+void vector3_init(Vector3 *ptrVec) {
+  ptrVec->data = calloc(3, sizeof(double));
 }
 
-void vector3_free(Vector3 *vector) {
-  free(vector->data);
+void vector3_free(Vector3 *ptrVec) {
+  free(ptrVec->data);
 }
 
-double vector3_dot(Vector3 *vecA, Vector3 *vecB) {
+double vector3_dot(Vector3 *ptrVecA, Vector3 *ptrVecB) {
   double dot_product;
-  dot_product = vecA->data[0] * vecB->data[0]
-    + vecA->data[1] * vecB->data[1]
-    + vecA->data[2] * vecB->data[2];
+  dot_product = ptrVecA->data[0] * ptrVecB->data[0]
+    + ptrVecA->data[1] * ptrVecB->data[1]
+    + ptrVecA->data[2] * ptrVecB->data[2];
   return dot_product;
 }
 
-double vector3_magnitude(Vector3 *vector) {
+double vector3_magnitude(Vector3 *ptrVec) {
   double mag;
-  mag = sqrt(pow(vector->data[0],2)
-    + pow(vector->data[1],2)
-    + pow(vector->data[2],2));
+  mag = sqrt(pow(ptrVec->data[0],2)
+    + pow(ptrVec->data[1],2)
+    + pow(ptrVec->data[2],2));
   return mag;
 }
 
-Vector3 *vector3_cross(Vector3 *vecA, Vector3 *vecB) {
-  Vector3 *vecC;
-  vector3_init(vecC); 
-  vecC->data[0] = vecA->data[1] * vecB->data[2]
-                 -vecA->data[2] * vecB->data[1];
-  vecC->data[1] = vecA->data[2] * vecB->data[0]
-                 -vecA->data[0] * vecB->data[2];
-  vecC->data[2] = vecA->data[0] * vecB->data[1]
-                 -vecA->data[1] * vecB->data[0];
-  return vecC;
+void vector3_cross(Vector3 *ptrVecA, Vector3 *ptrVecB, Vector3 *resultVec) {
+  resultVec->data[0] = ptrVecA->data[1] * ptrVecB->data[2]
+                      -ptrVecA->data[2] * ptrVecB->data[1];
+  resultVec->data[1] = ptrVecA->data[2] * ptrVecB->data[0]
+                      -ptrVecA->data[0] * ptrVecB->data[2];
+  resultVec->data[2] = ptrVecA->data[0] * ptrVecB->data[1]
+                      -ptrVecA->data[1] * ptrVecB->data[0];
 }
