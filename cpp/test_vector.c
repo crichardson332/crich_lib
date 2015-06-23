@@ -2,7 +2,7 @@
 * File Name: test_vector3.c
 * Purpose:
 * Creation Date: 20-06-2015
-* Last Modified: Mon Jun 22 18:01:51 2015
+* Last Modified: Mon Jun 22 18:06:08 2015
 * Created By: Chris Richardson
 *******************************************/
 
@@ -28,6 +28,8 @@ int main() {
   vec2.data[2] = -0.75;
   printf("Vec1 mag: %f\n", vector3_magnitude(&vec1));
   printf("Vec1 dot vec2: %f\n", vector3_dot(&vec1, &vec2));
+
+  /* Check the cross product function */
   Vector3 vec3;
   vector3_init(&vec3);
   vector3_cross(&vec1, &vec2, &vec3);
