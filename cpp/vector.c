@@ -2,7 +2,7 @@
 * File Name: vector.c
 * Purpose:
 * Creation Date: 20-06-2015
-* Last Modified: Mon Jun 22 18:00:17 2015
+* Last Modified: Tue Jun 23 09:47:39 2015
 * Created By: Chris Richardson
 *******************************************/
 
@@ -14,7 +14,7 @@
 void vector_init(Vector *vector) {
   vector->size = 0;
   vector->capacity = VECTOR_INITIAL_CAPACITY;
-  vector->data = malloc(sizeof(double) * vector->capacity);
+  vector->data = calloc(vector->capacity, sizeof(double));
 }
 
 void vector_append(Vector *vector, double value) {
@@ -66,11 +66,9 @@ void vector_free(Vector *vector) {
  *
  */
 void vector3_init(Vector3 *ptrVec) {
-  ptrVec->data = calloc(3, sizeof(double));
-}
-
-void vector3_free(Vector3 *ptrVec) {
-  free(ptrVec->data);
+  ptrVec->data[0] = 0.0;
+  ptrVec->data[1] = 0.0;
+  ptrVec->data[2] = 0.0;
 }
 
 double vector3_dot(Vector3 *ptrVecA, Vector3 *ptrVecB) {

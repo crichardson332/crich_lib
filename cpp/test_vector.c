@@ -2,7 +2,7 @@
 * File Name: test_vector3.c
 * Purpose:
 * Creation Date: 20-06-2015
-* Last Modified: Mon Jun 22 18:06:08 2015
+* Last Modified: Tue Jun 23 09:47:31 2015
 * Created By: Chris Richardson
 *******************************************/
 
@@ -38,7 +38,4 @@ int main() {
   printf("Vec2 data: [%f, %f, %f]\n", vec2.data[0], vec2.data[1], vec2.data[2]);
   printf("Vec3: [%f, %f, %f]\n", vec3.data[0], vec3.data[1], vec3.data[2]);
 
-  vector3_free(&vec1);
-  vector3_free(&vec2);
-  vector3_free(&vec3);
 }
