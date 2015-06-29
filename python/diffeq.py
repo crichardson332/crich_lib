@@ -3,7 +3,6 @@
 # Purpose: Provide class for doing 
 #          numerical integration
 # Creation Date: 16-06-2015
-# Last Modified: Wed Jun 17 10:24:49 2015
 # Created By: Chris Richardson
 ############################################
 
