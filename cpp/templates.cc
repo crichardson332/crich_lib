@@ -17,11 +17,16 @@ T sum(T a, T b) {
 }
 
 int main() {
-  int i=5, j=6, k;
-  double f=2.0, g=0.5, h;
-  k=sum<int>(i,j);
-  h=sum<double>(f,g);
+  int i = 5, j = 6, k;
+  double f = 2.0, g = 0.5, h;
+  string str1 = "Hello, ";
+  string str2 = "world!";
+  string str3;
+  k = sum<int>(i,j);
+  h = sum<double>(f,g);
+  str3 = sum<string>(str1, str2);
   cout << k << '\n';
   cout << h << '\n';
+  cout << str3 << '\n';
   return 0;
 }
