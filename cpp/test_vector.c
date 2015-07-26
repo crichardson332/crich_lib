@@ -6,8 +6,6 @@
 * Created By: Chris Richardson
 *******************************************/
 
-/* ADDING TEST COMMENT */
-
 #include <stdio.h>
 #include "vector.h"
 
