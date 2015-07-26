@@ -1,6 +1,6 @@
 /******************************************
 * File Name: templates.cc
-* Purpose:
+* Purpose: Test out templates
 * Creation Date: 26-07-2015
 * Last Modified:
 * Created By: Chris Richardson
