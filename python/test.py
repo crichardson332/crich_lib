@@ -7,3 +7,5 @@
 ############################################
 
 # This is a test of git add and git commit
+
+# Adding a second comment here
