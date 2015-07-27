@@ -12,19 +12,20 @@ using std::endl;
 
 namespace foo
 {
-  int value() { return 5; }
+    int value() { return 5; }
+    double x;
 }
 
 namespace bar
 {
-  const double pi = 3.1416;
-  double value() { return 2*pi; }
+    const double pi = 3.1416;
+    double value() { return 2*pi; }
 }
 
 
 int main () {
-  cout << foo::value() << endl;
-  cout << bar::value() << endl;
-  cout << bar::pi << endl;
-  return 0;
+    double y;
+    cout << foo::x << endl;
+    cout << y << endl;
+    return 0;
 }
