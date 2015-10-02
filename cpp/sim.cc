@@ -9,16 +9,24 @@
 #include "sim.h"
 #include <iostream>
 
-//double thetaDot(
+double thetaDot(double theta) {
+    return (-theta);
+}
+
 void Sim::setIntegratorType(IntegType integ) {
     std::cout << integ << std::endl;
 }
 
-
+void Sim::setInitialState(std::vector<double> init_state) {
+    initial_state = init_state;
+}
 
 int main() {
     Sim sim1;
-    IntegType myInt = rk4;
-    sim1.setIntegratorType(myInt);
+    IntegType integrator = rk4;
+    //size_t num_states = 2;
+    std::vector<double> state_vec0 {0,0}; // This requires c++11 to work
+    sim1.setInitialState(state_vec0);
+    sim1.setIntegratorType(integrator);
 }
 

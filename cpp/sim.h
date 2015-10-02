@@ -17,11 +17,13 @@ class Sim {
 
     private:
         IntegType integrator_type;
-        //double (*deriv_func)(double);
+        double (*deriv_func)(double);
         double current_state;
         double current_time;
 
     public:
         void setIntegratorType(IntegType);
+        void setInitialState(std::vector<double>);
+        void step();
 };
         
