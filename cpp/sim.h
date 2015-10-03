@@ -1,5 +1,5 @@
 /******************************************
-* File Name: sim.h
+* File Name: SimODE.h
 * Purpose:
 * Creation Date: 02-10-2015
 * Last Modified:
@@ -9,7 +9,7 @@
 
 enum IntegType {euler, rk4};
 
-class Sim {
+class SimODE {
     public:
         double step_size;
         std::vector<double> initial_state;

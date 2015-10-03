@@ -1,5 +1,5 @@
 /******************************************
-* File Name: sim.cc
+* File Name: SimODE.cc
 * Purpose: Provide class for doing
 *          numerical integration
 * Creation Date: 02-10-2015
@@ -13,16 +13,16 @@ double thetaDot(double theta) {
     return (-theta);
 }
 
-void Sim::setIntegratorType(IntegType integ) {
+void SimODE::setIntegratorType(IntegType integ) {
     std::cout << integ << std::endl;
 }
 
-void Sim::setInitialState(std::vector<double> init_state) {
+void SimODE::setInitialState(std::vector<double> init_state) {
     initial_state = init_state;
 }
 
 int main() {
-    Sim sim1;
+    SimODE sim1;
     IntegType integrator = rk4;
     //size_t num_states = 2;
     std::vector<double> state_vec0 {0,0}; // This requires c++11 to work
