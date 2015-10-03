@@ -1,6 +1,6 @@
 /******************************************
 * File Name: namespaces.cc
-* Purpose: Testing out namespace code
+* Purpose: Testing namespaces
 * Creation Date: 26-07-2015
 * Last Modified:
 * Created By: Chris Richardson
