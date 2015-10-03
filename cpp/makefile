@@ -1,2 +1,2 @@
 program:
-	gcc test_vector.c vector.c
+	g++ -std=c++11 InvertedPendulum.cc SimODE.cc
