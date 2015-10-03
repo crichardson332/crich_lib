@@ -14,7 +14,7 @@ double thetaDot(double theta) {
 }
 
 void SimODE::setIntegratorType(IntegType integ) {
-    std::cout << integ << std::endl;
+    integrator_type = integ;
 }
 
 void SimODE::setInitialState(std::vector<double> init_state) {
