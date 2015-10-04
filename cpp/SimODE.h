@@ -6,6 +6,7 @@
 * Created By: Chris Richardson
 *******************************************/
 #include <vector>
+#include <iostream>
 
 enum IntegType {euler, rk4};
 
@@ -13,7 +14,7 @@ class SimODE {
     private:
         double step_size;
         double initial_time;
-        double (*deriv_func)(double);
+        std::vector<double> (*deriv_func)(std::vector<double>, double);
         double current_time;
         std::vector<double> current_state;
         std::vector<double> initial_state;
@@ -24,6 +25,9 @@ class SimODE {
         void setInitialTime(double);
         void setInitialState(std::vector<double>);
         void setStepSize(double);
+        std::vector<double> getState();
+        double getTime();
+        void setDerivFunction(std::vector<double> (*deriv_func)(std::vector<double>, double));
         void reset();
         void step();
 };

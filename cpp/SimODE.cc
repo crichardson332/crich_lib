@@ -8,11 +8,6 @@
 *******************************************/
 #include "SimODE.h"
 #include "assert.h"
-#include <iostream>
-
-double thetaDot(double theta) {
-    return (-theta);
-}
 
 void SimODE::setIntegratorType(IntegType integ) {
     integrator_type = integ;
@@ -31,6 +26,18 @@ void SimODE::setStepSize(double st_size) {
     step_size = st_size;
 }
 
+std::vector<double> SimODE::getState() {
+    return current_state;
+}
+
+double SimODE::getTime() {
+    return current_time;
+}
+
+void SimODE::setDerivFunction(std::vector<double> (*dFuncPointer)(std::vector<double>, double)) {
+    deriv_func = dFuncPointer;
+}
+
 void SimODE::reset() {
     current_time = initial_time;
     current_state = initial_state;
@@ -40,7 +47,8 @@ void SimODE::step() {
     switch (integrator_type) {
         case euler: {
             //do euler integration
-            std::vector<double> deriv {0,0}; 
+            std::vector<double> deriv(current_state.size());
+            deriv = deriv_func(current_state, current_time);
             for (int i=0;i<current_state.size();i++) {
                 current_state[i] += step_size * deriv[i];
             }
