@@ -16,6 +16,7 @@ class SimODE {
         double initial_time;
         std::vector<double> (*deriv_func)(std::vector<double>, double);
         double current_time;
+        double stop_time;
         std::vector<double> current_state;
         std::vector<double> initial_state;
         IntegType integrator_type;
@@ -25,10 +26,11 @@ class SimODE {
         void setInitialTime(double);
         void setInitialState(std::vector<double>);
         void setStepSize(double);
+        void setStopTime(double);
         std::vector<double> getState();
         double getTime();
         void setDerivFunction(std::vector<double> (*deriv_func)(std::vector<double>, double));
         void reset();
-        void step();
+        bool step();
 };
         

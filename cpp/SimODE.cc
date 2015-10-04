@@ -34,6 +34,10 @@ double SimODE::getTime() {
     return current_time;
 }
 
+void SimODE::setStopTime(double t_final) {
+    stop_time = t_final;
+}
+
 void SimODE::setDerivFunction(std::vector<double> (*dFuncPointer)(std::vector<double>, double)) {
     deriv_func = dFuncPointer;
 }
@@ -43,7 +47,7 @@ void SimODE::reset() {
     current_state = initial_state;
 } 
 
-void SimODE::step() {
+bool SimODE::step() {
     switch (integrator_type) {
         case euler: {
             //do euler integration
@@ -60,4 +64,5 @@ void SimODE::step() {
             break;
         }
     }
+    return (current_time <= stop_time);
 }

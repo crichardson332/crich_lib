@@ -6,43 +6,47 @@
 * Created By: Chris Richardson
 *******************************************/
 #include "SimODE.h"
+#include <math.h>
+#include <fstream>
+#include <cstdlib>
 
-std::vector<double> thetaDot(std::vector<double> theta, double time) {
-    std::vector<double> theta_dot(theta.size());
-    for (int i=0;i<theta.size();i++) {
-        theta_dot[i] = -theta[i];
-    }
-    return theta_dot;
+std::vector<double> xDot(std::vector<double> x, double time) {
+    std::vector<double> x_dot(x.size());
+    double L = 1.0;
+    double g = 9.81;
+    x_dot[0] = x[1];
+    x_dot[1] = -g / L * sin(x[0]);
+    
+    //for (int i=0;i<x.size();i++) {
+    //    x_dot[i] = -x[i];
+    //}
+    return x_dot;
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    double timestep = atof(argv[1]); // Have timestep as input to program
     SimODE sim;
     IntegType integrator = euler;
-    std::vector<double> initial_state {1,-1}; // This requires c++11 to work
+    std::vector<double> initial_state {1.0,-0.5}; // This requires c++11 to work
     // Set parameters for sim
     sim.setInitialState(initial_state);
     sim.setInitialTime(0.0);
     sim.setIntegratorType(integrator);
-    sim.setStepSize(0.01);
-    sim.setDerivFunction(&thetaDot);
-
+    sim.setStepSize(timestep);
+    sim.setDerivFunction(&xDot);
+    sim.setStopTime(20.0);
     sim.reset();
-    // Set initial conditions
-    std::vector<double> state1(100), state2(100);
-    std::fill(state1.begin(), state1.end(), 0.0);
-    std::fill(state2.begin(), state2.end(), 0.0);
-    state1[0] = initial_state[0];
-    state2[0] = initial_state[1];
-    for (int i=1;i<=99;i++) {
-        if (i == 50) {
-            sim.reset();
-        }
-        sim.step();
-        state1[i] = sim.getState()[0];
-        state2[i] = sim.getState()[1];
-        std::cout << "x1: " << state1[i];
-        std::cout << "       x2: " << state2[i] << std::endl;
+    // Open csv file for storing data
+    std::ofstream myfile;
+    myfile.open("inv_pendulum.csv");
+    //myfile << "XT = [" << sim.getTime() << "," << sim.getState()[0] << "," << sim.getState()[1] << ";" << "\n";
+    myfile << sim.getTime() << " " << sim.getState()[0] << " " << sim.getState()[1] << "\n";
+    // Step through the simulation until the stop time
+    while (sim.step()) {
+        //myfile << sim.getTime() << "," << sim.getState()[0] << "," << sim.getState()[1] << ";" << "\n";
+        myfile << sim.getTime() << " " << sim.getState()[0] << " " << sim.getState()[1] << "\n";
     }
+    myfile.close();
 
     return 0;
 }
