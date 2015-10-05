@@ -1,8 +1,15 @@
 #!/bin/sh
 
+if [ -f "height.txt" ]
+then
+    `rm height.txt`
+fi
+
 i=0
-while [ $i -lt 10 ]
+result=0.01
+while [ $i -lt 1200 ]
 do
-   `./a.out expr $1`
+    result=$(echo "0.01 + $result" | bc -l )
+   `./a.out $result >> height.csv`
    i=`expr $i + 1`
 done

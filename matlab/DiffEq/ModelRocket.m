@@ -6,21 +6,36 @@
 % Created By: Chris Richardson;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%;
 
-XT = csvread('../../cpp/DiffEq/model_rocket.csv',' ');
+close all
+
+XT = csvread('../../cpp/DiffEq/model_rocket.csv');
 
 T = XT(:,1); 
 X = XT(:,2:3);
 % Plot
-theta = X(:,1); % extract first column
-thetadot = X(:,2); % extract 2nd column
+height = X(:,1); % extract first column
+velocity = X(:,2); % extract 2nd column
 subplot(2,1,1)
 %figure(1)
-plot(T,theta)
+plot(T,height)
 xlabel('Time (s)')
 ylabel('Height (m)')
 
-%figure(2)
 subplot(2,1,2)
-plot(T,thetadot)
+plot(T,velocity)
 xlabel('time (s)')
 ylabel('Velocity (m/s)') 
+
+% Plot height vs. burn time T
+max_height = csvread('../../cpp/DiffEq/height.csv');
+figure
+T = 0.01:0.01:12.0;
+plot(T,max_height)
+T_max_height = T(find(max_height == max(max_height)));
+x=[T_max_height(1),T_max_height(1)];
+y=[0,100];
+hold on
+plot(x,y)
+xlabel('Burnout time T (sec)')
+ylabel('Max height (m)')
+title('Max height vs. burnout time')

@@ -51,6 +51,8 @@ int main(int argc, char* argv[]) {
     sim.setStopTime(stop_time);
     sim.setParams(params);
     sim.reset();
+    // Keep track of max height
+    double max_height = sim.getState()[0];
     // Open csv file for storing data
     std::ofstream myfile;
     myfile.open("model_rocket.csv");
@@ -58,8 +60,10 @@ int main(int argc, char* argv[]) {
     // Step through the simulation until the stop time
     while (sim.step()) {
         myfile << sim.getTime() << "," << sim.getState()[0] << "," << sim.getState()[1] << "\n";
+        if (sim.getState()[0] > max_height) {max_height = sim.getState()[0];}
     }
     myfile.close();
+    std::cout << max_height << std::endl;
 
     return 0;
 }
