@@ -6,7 +6,7 @@
 % Created By: Chris Richardson;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%;
 
-XT = csvread('../../cpp/DiffEq/model_rocket.csv');
+XT = csvread('../../cpp/DiffEq/model_rocket.csv',' ');
 
 T = XT(:,1); 
 X = XT(:,2:3);

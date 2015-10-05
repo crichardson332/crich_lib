@@ -38,8 +38,12 @@ void SimODE::setStopTime(double t_final) {
     stop_time = t_final;
 }
 
-void SimODE::setDerivFunction(std::vector<double> (*dFuncPointer)(std::vector<double>, double)) {
+void SimODE::setDerivFunction(std::vector<double> (*dFuncPointer)(std::vector<double>, double, std::vector<double>)) {
     deriv_func = dFuncPointer;
+}
+
+void SimODE::setParams(std::vector<double> params_vec) {
+    params = params_vec;
 }
 
 void SimODE::reset() {
@@ -52,7 +56,7 @@ bool SimODE::step() {
         case euler: {
             //do euler integration
             std::vector<double> deriv(current_state.size());
-            deriv = deriv_func(current_state, current_time);
+            deriv = deriv_func(current_state, current_time, params);
             for (int i=0;i<current_state.size();i++) {
                 current_state[i] += step_size * deriv[i];
             }
