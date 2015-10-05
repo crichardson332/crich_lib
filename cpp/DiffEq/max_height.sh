@@ -10,6 +10,6 @@ result=0.01
 while [ $i -lt 1200 ]
 do
     result=$(echo "0.01 + $result" | bc -l )
-   `./a.out $result >> height.csv`
+   `./modelRocketSim $result >> height.csv`
    i=`expr $i + 1`
 done
