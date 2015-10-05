@@ -1,5 +1,5 @@
 /******************************************
-* File Name: InvertedPendulum.cc
+* File Name: UnforcedPendulum.cc
 * Purpose:
 * Creation Date: 03-10-2015
 * Last Modified:
@@ -7,6 +7,7 @@
 *******************************************/
 #include "SimODE.h"
 #include <math.h>
+#include <assert.h>
 #include <fstream>
 #include <cstdlib>
 
@@ -24,6 +25,7 @@ std::vector<double> xDot(std::vector<double> x, double time) {
 }
 
 int main(int argc, char* argv[]) {
+    assert(argc == 2);
     double timestep = atof(argv[1]); // Have timestep as input to program
     SimODE sim;
     IntegType integrator = euler;
@@ -38,7 +40,7 @@ int main(int argc, char* argv[]) {
     sim.reset();
     // Open csv file for storing data
     std::ofstream myfile;
-    myfile.open("inv_pendulum.csv");
+    myfile.open("pendulum.csv");
     //myfile << "XT = [" << sim.getTime() << "," << sim.getState()[0] << "," << sim.getState()[1] << ";" << "\n";
     myfile << sim.getTime() << " " << sim.getState()[0] << " " << sim.getState()[1] << "\n";
     // Step through the simulation until the stop time

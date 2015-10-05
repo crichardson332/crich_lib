@@ -6,7 +6,7 @@
 % Created By: Chris Richardson;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%;
 
-XT = csvread('../cpp/inv_pendulum.csv');
+XT = csvread('../../cpp/DiffEq/pendulum.csv');
 
 T = XT(:,1); 
 X = XT(:,2:3);

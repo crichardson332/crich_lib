@@ -1,5 +1,5 @@
 /******************************************
-* File Name: InvertedPendulum.cc
+* File Name: ModelRocket.cc
 * Purpose:
 * Creation Date: 03-10-2015
 * Last Modified:
@@ -32,8 +32,8 @@ std::vector<double> xDot(std::vector<double> x, double time) {
 
 int main(int argc, char* argv[]) {
     assert(argc == 3);
-    double timestep = atof(argv[1]); // Have timestep as input to program
-    double stop_time = atof(argv[2]); // Have timestep as input to program
+    double timestep = atof(argv[1]); // Timestep input to program
+    double stop_time = atof(argv[2]); // Stop time input to program
     SimODE sim;
     IntegType integrator = euler;
     std::vector<double> initial_state {0.0,0.0}; // This requires c++11 to work
