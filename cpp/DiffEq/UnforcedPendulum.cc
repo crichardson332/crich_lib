@@ -11,8 +11,8 @@
 #include <fstream>
 #include <cstdlib>
 
-std::vector<double> xDot(std::vector<double> x, double time) {
-    std::vector<double> x_dot(x.size());
+std::valarray<double> xDot(std::valarray<double> x, double time, std::valarray<double> params) {
+    std::valarray<double> x_dot(x.size());
     double L = 1.0;
     double g = 9.81;
     x_dot[0] = x[1];
@@ -28,8 +28,8 @@ int main(int argc, char* argv[]) {
     assert(argc == 2);
     double timestep = atof(argv[1]); // Have timestep as input to program
     SimODE sim;
-    IntegType integrator = euler;
-    std::vector<double> initial_state {1.0,-0.5}; // This requires c++11 to work
+    IntegType integrator = rk4;
+    std::valarray<double> initial_state {1.0,-0.5}; // This requires c++11 to work
     // Set parameters for sim
     sim.setInitialState(initial_state);
     sim.setInitialTime(0.0);

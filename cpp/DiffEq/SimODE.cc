@@ -18,15 +18,19 @@ void SimODE::setInitialTime(double init_time) {
     initial_time = init_time;
 }
     
-void SimODE::setInitialState(std::vector<double> init_state) {
+void SimODE::setInitialState(std::valarray<double> init_state) {
     initial_state = init_state;
+    //k1.resize(initial_state.size());
+    //k2.resize(initial_state.size());
+    //k3.resize(initial_state.size());
+    //k4.resize(initial_state.size());
 }
 
 void SimODE::setStepSize(double st_size) {
     step_size = st_size;
 }
 
-std::vector<double> SimODE::getState() {
+std::valarray<double> SimODE::getState() {
     return current_state;
 }
 
@@ -38,11 +42,11 @@ void SimODE::setStopTime(double t_final) {
     stop_time = t_final;
 }
 
-void SimODE::setDerivFunction(std::vector<double> (*dFuncPointer)(std::vector<double>, double, std::vector<double>)) {
+void SimODE::setDerivFunction(std::valarray<double> (*dFuncPointer)(std::valarray<double>, double, std::valarray<double>)) {
     deriv_func = dFuncPointer;
 }
 
-void SimODE::setParams(std::vector<double> params_vec) {
+void SimODE::setParams(std::valarray<double> params_vec) {
     params = params_vec;
 }
 
@@ -55,7 +59,6 @@ bool SimODE::step() {
     switch (integrator_type) {
         case euler: {
             //do euler integration
-            std::vector<double> deriv(current_state.size());
             deriv = deriv_func(current_state, current_time, params);
             for (int i=0;i<current_state.size();i++) {
                 current_state[i] += step_size * deriv[i];
@@ -64,7 +67,15 @@ bool SimODE::step() {
             break;
         }
         case rk4: {
-            double temp = 0;
+            k1 = deriv_func(current_state, current_time, params);
+            k2 = deriv_func(current_state + k1 * (step_size / 2),
+                            current_time + step_size / 2, params);
+            k3 = deriv_func(current_state + k2 * (step_size / 2),
+                            current_time + step_size / 2, params);
+            k4 = deriv_func(current_state + k2 * step_size,
+                            current_time + step_size, params);
+            current_state += (k1 + k2 * 2 + k3 * 2 + k4) * (step_size / 6);
+            current_time += step_size;
             break;
         }
     }

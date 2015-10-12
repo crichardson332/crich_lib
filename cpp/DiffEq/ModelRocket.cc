@@ -11,9 +11,10 @@
 #include <cstdlib>
 #include <assert.h>
 
-std::vector<double> xDot(std::vector<double> x, double time, std::vector<double> params) {
+std::valarray<double> xDot(std::valarray<double> x, double time, std::valarray<double> params) {
     assert(params.size() == 1);
-    std::vector<double> x_dot(x.size());
+    assert(x.size() == 2);
+    std::valarray<double> x_dot(x.size());
     const double m = 1.0;
     const double g = 9.81;
     const double CD = 0.1;
@@ -40,8 +41,8 @@ int main(int argc, char* argv[]) {
     double T = atof(argv[1]);
     SimODE sim;
     IntegType integrator = euler;
-    std::vector<double> initial_state {0.0,0.0}; // This requires c++11 to work
-    std::vector<double> params {T};
+    std::valarray<double> initial_state {0.0,0.0}; // This requires c++11 to work
+    std::valarray<double> params {T};
     // Set parameters for sim
     sim.setInitialState(initial_state);
     sim.setInitialTime(0.0);

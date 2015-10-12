@@ -5,7 +5,8 @@
 * Last Modified:
 * Created By: Chris Richardson
 *******************************************/
-#include <vector>
+#include <valarray>
+#include <valarray>
 #include <iostream>
 
 enum IntegType {euler, rk4};
@@ -14,24 +15,23 @@ class SimODE {
     private:
         double step_size;
         double initial_time;
-        std::vector<double> (*deriv_func)(std::vector<double>, double, std::vector<double>);
+        std::valarray<double> (*deriv_func)(std::valarray<double>, double, std::valarray<double>);
         double current_time;
         double stop_time;
-        std::vector<double> current_state;
-        std::vector<double> initial_state;
-        std::vector<double> params;
+        std::valarray<double> current_state, initial_state, params, 
+            k1, k2, k3, k4, deriv;
         IntegType integrator_type;
 
     public:
         void setIntegratorType(IntegType);
         void setInitialTime(double);
-        void setInitialState(std::vector<double>);
+        void setInitialState(std::valarray<double>);
         void setStepSize(double);
         void setStopTime(double);
-        std::vector<double> getState();
+        std::valarray<double> getState();
         double getTime();
-        void setDerivFunction(std::vector<double> (*deriv_func)(std::vector<double>, double, std::vector<double>));
-        void setParams(std::vector<double>);
+        void setDerivFunction(std::valarray<double> (*deriv_func)(std::valarray<double>, double, std::valarray<double>));
+        void setParams(std::valarray<double>);
         void reset();
         bool step();
 };
