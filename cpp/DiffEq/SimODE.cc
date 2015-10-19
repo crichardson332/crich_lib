@@ -20,10 +20,6 @@ void SimODE::setInitialTime(double init_time) {
     
 void SimODE::setInitialState(std::valarray<double> init_state) {
     initial_state = init_state;
-    //k1.resize(initial_state.size());
-    //k2.resize(initial_state.size());
-    //k3.resize(initial_state.size());
-    //k4.resize(initial_state.size());
 }
 
 void SimODE::setStepSize(double st_size) {
