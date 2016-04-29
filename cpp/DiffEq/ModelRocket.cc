@@ -24,7 +24,7 @@ std::valarray<double> xDot(std::valarray<double> x, double time, std::valarray<d
     const double F = F0 * (time <= T);
     if (x[0] >= 0) {
         x_dot[0] = x[1];
-        x_dot[1] = F / m - ((x[1] > 0) - (x[1] < 0))*CD * pow(x[1],2) / m - g;
+        x_dot[1] = F / m - ((x[1] > 0) - (x[1] < 0)) * CD * pow(x[1],2) / m - g;
     } else {
         x_dot[0] = 0.0;
         x_dot[1] = 0.0;
