@@ -36,8 +36,8 @@ int main(int argc, char* argv[]) {
     assert(argc == 2);
     //double timestep = atof(argv[1]); // Timestep input to program
     //double stop_time = atof(argv[2]); // Stop time input to program
-    double timestep = 0.01; // Timestep input to program
-    double stop_time = 20; // Stop time input to program
+    double timestep = 0.01; // Timestep
+    double stop_time = 20; // Stop time
     double T = atof(argv[1]);
     SimODE sim;
     IntegType integrator = euler;
